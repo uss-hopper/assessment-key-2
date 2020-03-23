@@ -1,5 +1,5 @@
 const onPageLoad = () => {
-	axios.get("./php/apis").then(({data}) => {
+	axios.get("https://jsonplaceholder.typicode.com/posts").then(({data}) => {
 		let cards =  createCard(data.data);
 		console.log(cards);
 		let html = document.getElementById("target");
@@ -8,7 +8,7 @@ const onPageLoad = () => {
 	});
 };
 
-const createCard = reply => reply.map(reply => {
+const createCards = reply => reply.map(reply => {
 
 	return (
 		`
