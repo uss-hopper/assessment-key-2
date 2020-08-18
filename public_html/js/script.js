@@ -1,17 +1,12 @@
 const onPageLoad = () => {
-	axios.get("https://jsonplaceholder.typicode.com/posts").then(({data}) => {
-		let cards =  createCard(data.data);
-		console.log(cards);
-		let html = document.getElementById("target");
-		html.innerHTML = cards.join("\r\n");
-
-	});
-};
-
-const createCards = reply => reply.map(reply => {
-
-	return (
-		`
+	fetch(
+		"https://bootcamp-coders.cnm.edu/~gkephart/ng-demo7-backend/public_html/apis/posts/"
+	)
+	.then((response) => response.json())
+	.then((response) => {
+		document.getElementById("target").innerHTML = response.data.map(
+			(reply) => {
+				return `
 			<div class="card">
 				<div class="card-body">
 					<h5 class="card-title">${reply.title}</h5>
@@ -19,7 +14,8 @@ const createCards = reply => reply.map(reply => {
 					</p>
 			</div>
 		</div>
-
-	`
-	)
-});
+			`;
+			}
+		);
+	});
+};
